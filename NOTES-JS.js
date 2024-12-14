@@ -33,3 +33,12 @@ window.addEventListener('message', (event) => {
     if (event.origin !== 'https://kiro-create.github.io/Notes-app/') return;
     console.log('Received message:', event.data);
 });
+
+// Add error handling to your WebSocket client
+socket.addEventListener('error', (error) => {
+    console.error('WebSocket error:', error);
+});
+
+socket.addEventListener('close', (event) => {
+    console.log('WebSocket connection closed:', event);
+});
