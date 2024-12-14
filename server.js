@@ -56,17 +56,18 @@ const wss = new WebSocket.Server({ port: 8080 });
 
 wss.on('connection', (ws) => {
     ws.on('message', async (message) => {
-        console.log('received:', message);
-        
-        // Send the message to your AI service (replace with your API call)
-        const aiResponse = await getAIResponse(message);
-        
-        // Broadcast the AI response to all clients
-        wss.clients.forEach((client) => {
-            if (client.readyState === WebSocket.OPEN) {
-                client.send(aiResponse);
-            }
-        });
+        try {
+            console.log('received:', message.toString());
+            
+            // Use your existing Gemini AI function
+            const aiResponse = await processWithGeminiAI(message.toString());
+            
+            // Send response back to client
+            ws.send(JSON.stringify(aiResponse));
+        } catch (error) {
+            console.error('Error processing message:', error);
+            ws.send(JSON.stringify({ error: 'Failed to process message' }));
+        }
     });
 });
 
