@@ -12,10 +12,13 @@ socket.addEventListener('message', (event) => {
 document.getElementById('sendButton').addEventListener('click', sendMessage);
 
 function sendMessage() {
-    const message = { type: 'greeting', text: 'Hello from the parent window!' };
-    const targetOrigin = 'https://your-target-origin.com'; // Replace with the actual target origin
-    console.log('Sending message:', message, 'to', targetOrigin);
-    window.postMessage(message, targetOrigin);
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    if (message) {
+        socket.send(message);
+        input.value = '';
+        displayMessage(`You: ${message}`);
+    }
 }
 
 function displayMessage(message) {
@@ -27,6 +30,6 @@ function displayMessage(message) {
 }
 
 window.addEventListener('message', (event) => {
-    if (event.origin !== 'https://your-expected-origin.com') return;
+    if (event.origin !== 'https://kiro-create.github.io/Notes-app/') return;
     console.log('Received message:', event.data);
 });
