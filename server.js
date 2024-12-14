@@ -71,11 +71,4 @@ wss.on('connection', (ws) => {
     });
 });
 
-// Example function to get AI response (replace with your actual API call)
-async function getAIResponse(message) {
-    // Replace with your AI API endpoint and logic
-    const response = await axios.post('https://your-ai-api-endpoint', { message });
-    return response.data; // Adjust based on your API response structure
-}
-
 console.log('WebSocket server is running on ws://localhost:8080');
