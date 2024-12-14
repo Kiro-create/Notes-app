@@ -55,15 +55,26 @@ app.listen(5000, () => {
 const wss = new WebSocket.Server({ port: 8080 });
 
 wss.on('connection', (ws) => {
-    ws.on('message', (message) => {
+    ws.on('message', async (message) => {
         console.log('received:', message);
-        // Broadcast the message to all clients
+        
+        // Send the message to your AI service (replace with your API call)
+        const aiResponse = await getAIResponse(message);
+        
+        // Broadcast the AI response to all clients
         wss.clients.forEach((client) => {
             if (client.readyState === WebSocket.OPEN) {
-                client.send(message);
+                client.send(aiResponse);
             }
         });
     });
 });
+
+// Example function to get AI response (replace with your actual API call)
+async function getAIResponse(message) {
+    // Replace with your AI API endpoint and logic
+    const response = await axios.post('https://your-ai-api-endpoint', { message });
+    return response.data; // Adjust based on your API response structure
+}
 
 console.log('WebSocket server is running on ws://localhost:8080');
