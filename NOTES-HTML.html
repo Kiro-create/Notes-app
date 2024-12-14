@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character set and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title of the webpage displayed in the browser tab -->
+    <title>AI-Powered Note-Taking</title>
+
+    <!-- Linking external CSS stylesheet for styling the webpage -->
+    <link rel="stylesheet" href="NOTES-CSS.css">
+</head>
+<body>
+    <!-- Main heading for the webpage -->
+    <h1>AI-Powered Note-Taking and Study Assistant</h1>
+    
+    <!-- Section for uploading notes -->
+    <div id="note-uploader">
+        <h2>Upload Your Notes</h2>
+        
+        <!-- Label and input field for selecting files to upload -->
+        <label for="fileInput">Choose a file:</label>
+        <input type="file" id="fileInput" accept=".txt,.pdf,.jpg,.png"> <!-- File types accepted -->
+        
+        <!-- Button to trigger the upload action -->
+        <button aria-label="Upload">Upload</button>
+    </div>
+
+    <!-- Section for displaying flashcards -->
+    <div id="flashcard-display">
+        <h2>Your Flashcards</h2>
+        
+        <!-- Placeholder for dynamically generated flashcards -->
+        <div id="flashcards"></div>
+    </div>
+
+    <!-- Linking the external JavaScript file for logic and functionality -->
+    <script src="NOTES-JS.js" defer></script>
+
+    <div id="sidebar">
+        <div id="chat">
+            <div id="messages"></div>
+            <input type="text" id="chatInput" placeholder="Type a message...">
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+</body>
+</html>
